@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^coffee/$ controllers/coffee.php?action=index
+RewriteRule ^coffee/new$ controllers/coffee.php?action=new
+RewriteRule ^coffee/create$ controllers/coffee.php?action=create
