@@ -72,3 +72,15 @@ Looping through the results would go like this:
  </li>
 <?php endwhile; ?>
 ```
+
+## The Task
+
+Before we build our CRUD app, go into your `Sequel Pro` program, open the `Query` tab, and create the `phpcrud` database.  We will use this database for all our data manipulation.
+
+Once this is done, we need to create a table for all the cars we are going to add.  Run the following query in `Sequel Pro`:
+
+CREATE TABLE cars (
+	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	car VARCHAR(50) NOT NULL,
+	guest VARCHAR(50) NOT NULL
+);
