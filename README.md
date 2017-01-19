@@ -178,7 +178,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	static public function find() {
 		$servername = '127.0.0.1';
 		$username = 'root';
-		$password = '';
+		$password = 'root';
 		$dbname = 'phpcrud';
 	}
 	```
