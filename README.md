@@ -235,6 +235,8 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 ![](images/powPowPowerWheels.gif)
 
+<!--First folks "finished" around 3:25-3:30, rest of folks took till 4...I may have set the bar too high on this one. Though everyone is literally sick and tired now, so...-->
+
 ### The "C" in CRUD
 
 OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  For this, we will have to make a *create* and *new* route.  We'll start the same place we did last time, in `.htaccess`.
