@@ -252,6 +252,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 
 	<details>
 	<summary>Try writing out a skeleton before checking here</summary>
+	```
 	if($_GET['action'] == 'index') {
 		$new_car_controller->indexPage();
 	} else if($_GET['action']=='new') {
@@ -259,12 +260,14 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	} else if($_GET['action']=='create') {
 		$new_car_controller->createAction();
 	}
+	```
 	</details>
 
 1. And we need to create those two functions.  Try creating `newPage()` on your own (it's very similar to `index()`).
 
 	<details>
 	<summary>Try writing out a skeleton for `createAction()` before checking here</summary>
+	```
 	public function newPage(){
 		require('../views/cars/new.php');
 	}
@@ -273,6 +276,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 		Car::create($_POST['car'], $_POST['owner']);
 		header('Location: ./');
 	}
+	```
 	</details>
 	
 1. Now we need to head over to `models/car.php` to make the `Car::create()` method.  This is almost identical to the `Car::find()` method except for two crucial details: your SQL query will be different, and you need to pass in parameters.  Those lines will look like this, respectively:
