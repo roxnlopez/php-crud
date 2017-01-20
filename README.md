@@ -49,7 +49,7 @@ Once this change is made, you will need to `Stop Servers` and `Start Servers` in
 Simple database connection and querying looks like this:
 
 ```php
-$servername = "127.0.0.1";
+$servername = "localhost";
 $username = "root";
 $password = "root";
 $dbname = "phpexample";
@@ -185,7 +185,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 	```php
 	static public function find() {
-		$servername = '127.0.0.1';
+		$servername = 'localhost';
 		$username = 'root';
 		$password = 'root';
 		$dbname = 'phpcrud';
