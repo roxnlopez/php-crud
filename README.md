@@ -7,6 +7,7 @@
 
 1. **Route** URLs to php files
 2. **Connect** to MySQL
+3. **Build** CRUD functionality with PHP
 
 ## Route URLs to php files
 
