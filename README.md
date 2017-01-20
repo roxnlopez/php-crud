@@ -20,7 +20,7 @@ RewriteRule ^users/[0-9]+$ server.php
 
 It uses regular expressions to map urls to files.
 
-Before we can use our `.htaccess` file, we will need to change a security setting.  Go into your `httpd.conf` file and change the following
+Before we can use our `.htaccess` file, we will need to change a security setting.  Go into your `httpd.conf` file in `/Applications/MAMP/conf/apache` and change the following
 
 ```
 <FilesMatch "^\.ht">
