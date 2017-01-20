@@ -1,5 +1,7 @@
 <!--Credit to Matt Huntington for creating the skeleton and notes for this lesson-->
 
+<!--I think we started this at like 2:05...not sure.  I split the class into "team independence" and "team together", and the together team worked through a little more slowly, with some pointers from me.-->
+
 # CRUD With PHP
 
 ## Lesson Objectives
@@ -39,6 +41,8 @@ to `Allow` your `.htaccess` file.
     Satisfy All
 </FilesMatch>
 ```
+
+Once this change is made, you will need to `Stop Servers` and `Start Servers` in your MAMP console.
 
 ## Connect to MySQL
 
@@ -98,6 +102,8 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 
 1. Make sure your car is in the table before moving on.
 
+<!--2:23 before moving on to next step -->
+
 ### Hello PHP
 
 1. Create a `views` directory inside your `php_cars` directory.
@@ -109,6 +115,8 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 1. Go to `http://localhost:8888/php_cars/views/cars/`, and see your beautiful work!
 
 ### Getting our car from the DB
+
+<!--Actually 2:28 before starting this step -->
 
 Hard-coded text is great and all, but as with any CRUD route, we need to do two more things before we are really "full-stack": we need routes, and we need to talk to the DB.  That's where our notes from earlier come in.  We need to create an `.htaccess` file, and we need to connect to MySQL.  Here we go...
 
