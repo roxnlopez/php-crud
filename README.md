@@ -121,7 +121,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	
 1. You can probably guess what's coming next.  That controller folder and file we just referenced in `.htaccess`?  We need to create that.
 
-1. Since this is a PHP file, we need to create a `<?php` tag.  Also, notice that we have a view and a controller.  Are we missing something?  Yes we are.  Start your `cars.php` file this way:
+1. Since this is a PHP file, we need to create a `<?php` tag.  Also, notice that we have a **V**iew and a **C**ontroller.  Are we missing something?  Yes we are.  And we'll get there soon enough.  For now, start your `cars.php` file this way:
 
 	```php
 	<?php
