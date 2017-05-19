@@ -13,13 +13,14 @@
 
 ## Route URLs to php files
 
-Routing can be accomplished with a .htaccess file placed in your root directory for the app.  It will look like this:
+Routing can be accomplished with a .htaccess file placed in your root directory for the app.  
 
+<details><summary>(It will look like this)</summary>
 ```
 RewriteEngine On
 RewriteRule ^users/[0-9]+$ server.php
 ```
-
+</details>
 It uses regular expressions to map urls to files.
 
 Before we can use our `.htaccess` file, we will need to change a security setting.  Go into your `httpd.conf` file in `/Applications/MAMP/conf/apache` and change the following
@@ -42,7 +43,7 @@ to `Allow` your `.htaccess` file.
 </FilesMatch>
 ```
 
-Once this change is made, you will need to `Stop Servers` and `Start Servers` in your MAMP console.
+Once this change is made, you will need to `Stop Servers` and `Start Servers` in your MAMP console if it was already running.
 
 ## Connect to MySQL
 
@@ -86,7 +87,7 @@ We need an app to keep track of all the cool cars we have.  How are we going to 
 
 1. Create a new directory inside your MAMP Web Server root called `php_cars`.
 
-1. Before we build our CRUD app, go into your `Sequel Pro` program, open the `Query` tab, and create the `phpcrud` database.  We will use this database for all our data manipulation.
+1. Before we build our CRUD app, go into your `Sequel Pro` program, open the `Query` tab, and create the `phpcrud` database (You'll need to create a socket connection - directions can be found [here](https://github.com/den-materials/php-wordpress#set-up)).  We will use this database for all our data manipulation.
 
 1. Once this is done, we need to create a table for all the cars we are going to add.  Run the following query in `Sequel Pro`:
 
@@ -127,7 +128,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	RewriteRule ^cars/$ controllers/cars.php?action=index
 	```
 	
-1. You can probably guess what's coming next.  That controller folder and file we just referenced in `.htaccess`?  We need to create that.
+1. You can probably guess what's coming next.  That controller folder and file we just referenced in `.htaccess`?  We need to create that. (Do that now.)
 
 1. Since this is a PHP file, we need to create a `<?php` tag.  Also, notice that we have a **V**iew and a **C**ontroller.  Are we missing something?  Yes we are.  And we'll get there soon enough.  For now, start your `cars.php` file this way:
 
@@ -139,7 +140,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	?>
 	```
 	
-1. We'll get to the model file in just a bit.  For now, though, we need build out that `action=index` we put in query params earlier.
+1. We'll get to the model file in just a bit.  For now, though, we need build out that `action=index` we put in query params earlier. Place it inside your `php` tag in `cars.php`.
 
 	```php
 	if($_GET['action'] == 'index') {
@@ -167,17 +168,41 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 1. Noice!  Make sure all of this code is in the proper order (PHP, like JS, reads top-down, so you can't use any variables above where they are created), then our controller is good to go.
 
-1. Now it's time for our (America's Next Top) model.  Create a `models` folder and put a `car.php` file inside it.
+<details><summary> . . . hint hint . . .</summary>
+```php
+	<?php
+		require('../models/car.php');
+
+		Class CarController {
+
+			public function indexPage(){
+				$cars = Car::find();
+				require('../views/cars/index.php');
+			}
+		}
+
+		$new_car_controller = new CarController();
+
+		if($_GET['action'] == 'index') {
+			$new_car_controller->indexPage();
+		}
+	?>
+```
+</details>
+
+1. Now it's time for our (America's Next Top) model.  
+
+![<3](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif)
+
+Create a `models` folder and put a `car.php` file inside it.
 
 1. Start out the model with another class:
 
 	```php
 	<?php
+		Class Car {
 
-	Class Car {
-
-	}
-
+		}
 	?>
 	```
 	
@@ -192,24 +217,18 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 	}
 	```
 	
-1. Make sure this matches your DB name and login parameters for MySQL, then add in the meat of the function below the setup variables:
+1. Make sure the above matches your DB name and login parameters for MySQL, then add in the meat of the function DIRECTLY AFTER the setup variables:
 
 	```php
 	$mysql_connection = new mysqli($servername, $username, $password, $dbname);
 	```
 
-1. Since we want to escalate any issues we see, we need to make sure this connection actually worked.  So we need this conditional:
+1. Since we want to escalate any issues we see, we need to make sure this connection actually worked - that means we need a conditional. We have a MySQL connection, much like our earlier Mongo and PostgreSQL connections. But just like with those tools, the connection is only the first step - we also need to get our data.
 
 	```php
 	if($mysql_connection->connect_error){
 		$mysql_connection->close();
 		die('Connection Failed: ' . $mysql_connection->connect_error);
-	} 
-	```
-
-1. Home stretch now.  We have a MySQL connection, much like our earlier Mongo and PostgreSQL connections.  But just like with those tools, the connection is only the first step.  Now we need to get our data.  Enter the SQL query:
-
-	```php
 	} else {
 		$sql = "SELECT * FROM cars;";
 		$results = $mysql_connection->query($sql);
