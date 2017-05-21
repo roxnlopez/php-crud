@@ -236,6 +236,31 @@ Create a `models` folder and put a `car.php` file inside it.
 	}
 	```
 
+<details><summary>(Psst . . . That `car.php` file is tricky - it should look like this)</summary>
+```php
+<?php
+Class Car {
+	static public function find() {
+		$servername = 'localhost';
+		$username = 'root';
+		$password = 'root';
+		$dbname = 'phpcrud';
+		$mysql_connection = new mysqli($servername, $username, $password, $dbname);
+	
+	if($mysql_connection->connect_error){
+		$mysql_connection->close();
+		die('Connection Failed: ' . $mysql_connection->connect_error);
+	} else {
+		$sql = "SELECT * FROM cars;";
+		$results = $mysql_connection->query($sql);
+		return $results;
+	}
+	}
+}
+?>
+```
+</details>
+
 1. Last piece. Our `index.php` for cars is still a blank template.  Let's get some cars in there.  Add this to the file below your `h1`:
 
 	```php
@@ -269,9 +294,8 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	
 1. Now we need to create those two actions in `cars.php`.  Use the pattern we used for `index` to make two more conditionals for `new` and `create`.
 
-	<details>
-	<summary>Try writing out a skeleton before checking here</summary>
-	```
+	<details><summary>Try writing out a skeleton before checking here</summary>
+	```php
 	if($_GET['action'] == 'index') {
 		$new_car_controller->indexPage();
 	} else if($_GET['action']=='new') {
@@ -284,9 +308,8 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 
 1. And we need to create those two functions.  Try creating `newPage()` on your own (it's very similar to `index()`).
 
-	<details>
-	<summary>Try writing out a skeleton for `createAction()` before checking here</summary>
-	```
+	<details><summary>Try writing out a skeleton for `createAction()` before checking here</summary>
+	```php
 	public function newPage(){
 		require('../views/cars/new.php');
 	}
@@ -312,7 +335,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	```
 
 1. Once you've combined the lines above with your `find()` method to make a full `create()` method, we're ready to circle back to our views.  Create a new view in `views/cars` called `new.php`.  All you need on this page is some HTML boilerplate, a heading, and a form.  The form will have two `<input>`s, one with a `name` of "car", and the other with a `name` of "owner".  What should the `submit` `action` and `method` be?
-
+```html
 	<!-- Example solution
 
 	<!DOCTYPE html>
@@ -320,17 +343,17 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	    <head>
 	    </head>
 	    <body>
-		<h1>Add a New Car To The List</h1>
-		<form action="create" method="POST">
-		    <input type="text" name="car" placeholder="Maserati"/><br/>
-		    <input type="text" name="owner" placeholder="How May I Butcher Your Anme?"/><br/>
-		    <input type="submit" value="Submit"/>
-		</form>
+			<h1>Add a New Car To The List</h1>
+			<form action="create" method="POST">
+			    <input type="text" name="car" placeholder="Maserati"/><br/>
+			    <input type="text" name="owner" placeholder="How May I Butcher Your Anme?"/><br/>
+			    <input type="submit" value="Submit"/>
+			</form>
 	    </body>
 	</html>
 
 	-->
-
+```
 1. Add a link to your `index.php` that takes you to your `new.php`.  (What should it route to, based on your `.htaccess` file?)
 
 1. Now go back to `http://localhost:8888/php_cars/cars/`, and add a new car.  Yee haw!
