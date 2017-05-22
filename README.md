@@ -240,7 +240,6 @@ Create a `models` folder and put a `car.php` file inside it.
 
 <details><summary>(Psst . . . That `car.php` file is tricky - it should look like this)</summary>
 
-	```php
 	<?php
 	Class Car {
 		static public function find() {
@@ -261,7 +260,6 @@ Create a `models` folder and put a `car.php` file inside it.
 		}
 	}
 	?>
-	```
 
 </details>
 
