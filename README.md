@@ -299,6 +299,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 1. Now we need to create those two actions in `cars.php`.  Use the pattern we used for `index` to make two more conditionals for `new` and `create`.
 
 	<details><summary>Try writing out a skeleton before checking here</summary>
+	
 	```php
 	if($_GET['action'] == 'index') {
 		$new_car_controller->indexPage();
@@ -308,11 +309,13 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 		$new_car_controller->createAction();
 	}
 	```
+	
 	</details>
 
 1. And we need to create those two functions.  Try creating `newPage()` on your own (it's very similar to `index()`).
 
 	<details><summary>Try writing out a skeleton for `createAction()` before checking here</summary>
+	
 	```php
 	public function newPage(){
 		require('../views/cars/new.php');
@@ -323,6 +326,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 		header('Location: ./');
 	}
 	```
+	
 	</details>
 	
 1. Now we need to head over to `models/car.php` to make the `Car::create()` method.  This is almost identical to the `Car::find()` method except for two crucial details: your SQL query will be different, and you need to pass in parameters.  Those lines will look like this, respectively:
@@ -339,9 +343,10 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	```
 
 1. Once you've combined the lines above with your `find()` method to make a full `create()` method, we're ready to circle back to our views.  Create a new view in `views/cars` called `new.php`.  All you need on this page is some HTML boilerplate, a heading, and a form.  The form will have two `<input>`s, one with a `name` of "car", and the other with a `name` of "owner".  What should the `submit` `action` and `method` be?
-```html
-	<!-- Example solution
 
+<details><summary>Example solution</summary>
+
+```html
 	<!DOCTYPE html>
 	<html>
 	    <head>
@@ -355,9 +360,9 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 			</form>
 	    </body>
 	</html>
-
-	-->
 ```
+</details>
+
 1. Add a link to your `index.php` that takes you to your `new.php`.  (What should it route to, based on your `.htaccess` file?)
 
 1. Now go back to `http://localhost:8888/php_cars/cars/`, and add a new car.  Yee haw!
