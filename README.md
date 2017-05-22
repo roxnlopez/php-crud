@@ -169,6 +169,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 1. Noice!  Make sure all of this code is in the proper order (PHP, like JS, reads top-down, so you can't use any variables above where they are created), then our controller is good to go.
 
 <details><summary> . . . hint hint . . .</summary>
+
 ```php
 	<?php
 		require('../models/car.php');
@@ -188,6 +189,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 		}
 	?>
 ```
+
 </details>
 
 1. Now it's time for our (America's Next Top) model.  
@@ -237,28 +239,30 @@ Create a `models` folder and put a `car.php` file inside it.
 	```
 
 <details><summary>(Psst . . . That `car.php` file is tricky - it should look like this)</summary>
-```php
-<?php
-Class Car {
-	static public function find() {
-		$servername = 'localhost';
-		$username = 'root';
-		$password = 'root';
-		$dbname = 'phpcrud';
-		$mysql_connection = new mysqli($servername, $username, $password, $dbname);
-	
-	if($mysql_connection->connect_error){
-		$mysql_connection->close();
-		die('Connection Failed: ' . $mysql_connection->connect_error);
-	} else {
-		$sql = "SELECT * FROM cars;";
-		$results = $mysql_connection->query($sql);
-		return $results;
+
+	```php
+	<?php
+	Class Car {
+		static public function find() {
+			$servername = 'localhost';
+			$username = 'root';
+			$password = 'root';
+			$dbname = 'phpcrud';
+			$mysql_connection = new mysqli($servername, $username, $password, $dbname);
+
+		if($mysql_connection->connect_error){
+			$mysql_connection->close();
+			die('Connection Failed: ' . $mysql_connection->connect_error);
+		} else {
+			$sql = "SELECT * FROM cars;";
+			$results = $mysql_connection->query($sql);
+			return $results;
+		}
+		}
 	}
-	}
-}
-?>
-```
+	?>
+	```
+
 </details>
 
 1. Last piece. Our `index.php` for cars is still a blank template.  Let's get some cars in there.  Add this to the file below your `h1`:
