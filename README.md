@@ -16,10 +16,12 @@
 Routing can be accomplished with a .htaccess file placed in your root directory for the app.  
 
 <details><summary>(It will look like this)</summary>
+	
 ```
 RewriteEngine On
 RewriteRule ^users/[0-9]+$ server.php
 ```
+
 </details>
 It uses regular expressions to map urls to files.
 
@@ -192,9 +194,7 @@ Hard-coded text is great and all, but as with any CRUD route, we need to do two 
 
 </details>
 
-1. Now it's time for our (America's Next Top) model.  
-
-![<3](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif)
+1. Now it's time for our [(America's Next Top) model](https://media.giphy.com/media/26FKX7B7L6cfHPVIY/giphy.gif).  
 
 Create a `models` folder and put a `car.php` file inside it.
 
@@ -240,6 +240,7 @@ Create a `models` folder and put a `car.php` file inside it.
 
 <details><summary>(Psst . . . That `car.php` file is tricky - it should look like this)</summary>
 
+```php
 	<?php
 	Class Car {
 		static public function find() {
@@ -260,6 +261,7 @@ Create a `models` folder and put a `car.php` file inside it.
 		}
 	}
 	?>
+```
 
 </details>
 
@@ -359,6 +361,7 @@ OK, so now we can *see* our cars.  Now we need to be able to *save* new ones.  F
 	    </body>
 	</html>
 ```
+
 </details>
 
 1. Add a link to your `index.php` that takes you to your `new.php`.  (What should it route to, based on your `.htaccess` file?)
